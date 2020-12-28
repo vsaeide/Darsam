@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1> {{ user }} Classes </h1>
+    {% for classroom in classrooms %}
+         <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{% url 'classroom' classroom_id=classroom.id %}">{{ classroom.lesson }} {{classroom.grade}} {{classroom.class_num}}</a>
+            </div>
+          </div>
+        </article>
+    {% endfor %}
+    {% if type == "student" %}
+        <a class="nav-item nav-link" href="{% url 'join-classroom' %}">Join A Class</a>
+    {% elif type == "teacher" %}
+        <a class="nav-item nav-link" href="{% url 'create-classroom' %}">Create New Class</a>
+    {% endif %}
+{% endblock content %}
